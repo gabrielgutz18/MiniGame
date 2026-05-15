@@ -1,0 +1,191 @@
+body {
+    position: relative;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./imgs/bd.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: -1;
+}
+#icon1 {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .iconr {
+    width: 100px; /* Adjust the width as per your preference */
+    height: 100px; /* Adjust the height as per your preference */
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 60%;
+    border-radius: 20px;
+  }
+  .abouts {
+    width: 400px; /* Adjust the width as per your preference */
+    height: 100px; /* Adjust the height as per your preference */
+    /*border-radius: %;*/
+    position: absolute;
+    top: 0;
+    right: 23%;
+    border-radius: 20px;
+  }
+
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #profile1,
+  #profile2,
+  #profile3,
+  #profile4,
+  #profile5 {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-image {
+    width: 100px; /* Adjust the width as per your preference */
+    height: 100px; /* Adjust the height as per your preference */
+    border-radius: 50%;
+  }
+  .profile {
+    position: relative;
+    display: inline-block;
+  }
+  
+ /* .profile::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    background-color: rgba(236, 184, 70, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 20px;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .profile:hover::after {
+    opacity: 1;
+  }
+  
+  #profile1:hover::after {
+    content: "Jeorge Assis Malabanan";
+   
+  }
+  #profile2:hover::after {
+    content: "Gabriel Luigi Gutierrez";
+  }
+  #profile3:hover::after {
+    content: "John Paul Vibal";
+  }
+ 
+  #profile4:hover::after {
+    content: "Jenica Joy Saculo";
+  }
+  #profile5:hover::after {
+    content: "Gian Francis Hachaso";
+  }*/
+  #AM {
+    position: absolute;
+    /*bottom: 20vh;*/
+    top: 5%;
+    left: 10vw;
+    z-index: 100;
+    font-size: 1rem; /* Adjust the font size as needed */
+    background-color: rgb(247, 170, 4);
+    color: rgb(0, 0, 0);
+    padding: 3px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Adjust the border radius as needed */
+    cursor: pointer;
+  }
+  #GG {
+    position: absolute;
+    /*bottom: 20vh;*/
+    top: 23%;
+    left: 10vw;
+    z-index: 100;
+    font-size: 1rem; /* Adjust the font size as needed */
+    background-color: rgb(247, 170, 4);
+    color: rgb(0, 0, 0);
+    padding: 3px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Adjust the border radius as needed */
+    cursor: pointer;
+  }
+  #JV {
+    position: absolute;
+    /*bottom: 20vh;*/
+    top: 38%;
+    left: 10vw;
+    z-index: 100;
+    font-size: 1rem; /* Adjust the font size as needed */
+    background-color: rgb(247, 170, 4);
+    color: rgb(0, 0, 0);
+    padding: 3px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Adjust the border radius as needed */
+    cursor: pointer;
+  }
+  #JS {
+    position: absolute;
+    /*bottom: 20vh;*/
+    top: 56%;
+    left: 10vw;
+    z-index: 100;
+    font-size: 1rem; /* Adjust the font size as needed */
+    background-color: rgb(247, 170, 4);
+    color: rgb(0, 0, 0);
+    padding: 3px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Adjust the border radius as needed */
+    cursor: pointer;
+  }
+  #GH {
+    position: absolute;
+    /*bottom: 20vh;*/
+    top: 73%;
+    left: 10vw;
+    z-index: 100;
+    font-size: 1rem; /* Adjust the font size as needed */
+    background-color: rgb(247, 170, 4);
+    color: rgb(0, 0, 0);
+    padding: 3px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Adjust the border radius as needed */
+    cursor: pointer;
+  }
+ 
+ 
+  .rectangle {
+    width: 800px;
+    height: 550px;
+    background-color: rgb(206, 178, 101);
+    position: absolute;
+    top: 0;
+    right: 100px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+ 

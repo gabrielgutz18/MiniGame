@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JANPOL DODGE</title>
+    <link rel="icon" type="image/png" href="./imgs/vibal.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .rectangle {
+            width: 200px;
+            height: 100px;
+            background-color: #ccc;
+            display: none;
+            border-radius: 20px;
+            text-align: center;
+            float: left;
+        }
+
+        #score {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .rectangle p {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        var highScore = 0;
+
+        function goToJanpolDodge() {
+            window.location.href = "JANPOL DODGE.html";
+        }
+
+        function gotoAboutUs() {
+            window.location.href = "about us.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var highScoresButton = document.getElementById("HighScores");
+            var rectangleCreated = false;
+            var rectangle = null;
+
+            highScore = localStorage.getItem("highScore") || 0;
+
+            highScoresButton.addEventListener("click", function () {
+                if (!rectangleCreated) {
+                    if (!rectangle) {
+                        rectangle = document.createElement("div");
+                        rectangle.classList.add("rectangle");
+
+                        var highScoresText = document.createElement("p");
+                        highScoresText.innerText = "Current Score\n" + highScore;
+
+                        rectangle.appendChild(highScoresText);
+                        document.body.appendChild(rectangle);
+                    }
+
+                    rectangle.style.display = "block";
+                    rectangleCreated = true;
+                } else {
+                    rectangle.style.display = "none";
+                    rectangleCreated = false;
+                }
+            });
+        });
+
+        // Game logic
+        var score = 0;
+        var gameStarted = false;
+        var gameInterval;
+
+        function startGame() {
+            if (!gameStarted) {
+                gameStarted = true;
+                score = 0;
+                updateScore();
+
+                // Example: Increase score every second
+                gameInterval = setInterval(function () {
+                    score++;
+                    updateScore();
+                }, 1000);
+            }
+        }
+
+        function endGame() {
+            if (gameStarted) {
+                gameStarted = false;
+                clearInterval(gameInterval);
+
+
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem("highScore", highScore);
+                }
+            }
+        }
+
+        function updateScore() {
+            var scoreElement = document.getElementById("score");
+            scoreElement.textContent = "Score: " + score;
+        }
+    </script>
+</head>
+
+<body>
+    <h1 class="big-text">
+        JANPOL DODGE!
+    </h1>
+    <button id="play" onclick="goToJanpolDodge()">PLAY!</button>
+    <button id="HighScores">Current Score</button>
+    <button id="aboutUs" onclick="gotoAboutUs()">About Us</button>
+    <p id="score"></p>
+
+    <div id="ch" class="chr">
+        <img class="icon" src="./imgs/vibal.png" alt="">
+    </div>
+    <div id="cr" class="chr">
+        <img class="icon1" src="./imgs/vibal.png" alt="">
+    </div>
+
+    <div class="rectangle">
+        <p>High Scores<br><?php echo $highScore; ?></p>
+    </div>
+</body>
+
+</html>

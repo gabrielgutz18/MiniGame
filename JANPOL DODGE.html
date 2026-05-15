@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JANPOL DODGE</title>
+    <link rel="icon" type="image/png" href="./imgs/vibal.png">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: url(./imgs/jungle.jpg) no-repeat center;
+        background-size: cover;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow-y: hidden;
+    }
+
+    #road {
+        /*border: 2px solid red;*/
+        background: url(./imgs/roadster.png) repeat-y;
+        height: 1200vh;
+        width: 75vw;
+        position: relative;
+        top: -80vh;
+        z-index: -9;
+        /*animation: roadanimation infinite 20s linear;*/
+    }
+
+    #start {
+        position: absolute;
+        /* top: 60vh; */
+        /* left: 47vw; */
+        z-index: 100;
+        font-size: 2rem;
+        background-color: rgb(245, 99, 99);
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    #score {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 2rem;
+        padding: 5px;
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    #object1 {
+        /* display: grid; */
+        /* place-items: center; */
+        position: relative;
+        width: 100px;
+        height: 100px;
+        left: 310px;
+        /* left: 230px; */
+        z-index: 1001;
+        /* animation: ecar1 infinite linear 3s; */
+        /*animation: objs1 infinite linear 3s;*/
+    }
+
+    #object2 {
+        /* display: grid;
+        place-items: center; */
+        position: relative;
+        width: 100px;
+        height: 100px;
+        left: 100px;
+        /* left: 150px; */
+        z-index: 1001;
+        /*animation: objs2 infinite linear 4s;*/
+    }
+
+    #object3 {
+        /* display: grid;
+        place-items: center; */
+        position: relative;
+        width: 100px;
+        height: 100px;
+        left: -100px;
+        /* left: -50px; */
+        /* left: -140px; */
+        z-index: 1001;
+        /*animation: objs3 infinite linear 6s;*/
+    }
+
+    #object4 {
+         /* display: grid;
+        place-items: center; */
+        position: relative;
+        width: 100px;
+        height: 100px;
+        left: -300px;
+        /* left: -330px; */
+        /* left: -220px; */
+        top: -250px;
+        z-index: 1001;
+        /*animation: objs4 infinite linear 2s;*/
+    }
+
+    .objectimg {
+        width: 80px;
+        /*border: 2px solid red;*/
+    }
+
+    .chrimage {
+        /*border: 2px solid red;*/
+        width: 80px;
+    }
+
+    #mycharacter {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        top: 15vh;
+        /* left: -1080px; */
+    }
+    @keyframes objs1 {
+        0% {
+            top: -30vh;
+
+        }
+
+        100% {
+            top: 100vh;
+        }
+    }
+
+    @keyframes objs2 {
+        0% {
+            top: -50vh;
+
+        }
+
+        100% {
+            top: 100vh;
+        }
+    }
+
+    @keyframes objs3 {
+        0% {
+            top: -60vh;
+
+        }
+
+        100% {
+            top: 100vh;
+        }
+    }
+
+    @keyframes objs4 {
+        0% {
+            top: -80vh;
+
+        }
+
+        100% {
+            top: 100vh;
+        }
+    }
+    
+    @keyframes roadanimation {
+        0% {
+            top: -1100vh;
+        }
+
+        100% {
+            top: -200vh;
+        }
+    }
+    audio {
+            display: none;
+        }
+ #game-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+#game-container h1 {
+  font-size: 24px;
+}
+
+#game-container p {
+  font-size: 18px;
+}
+</style>
+
+<body>
+    <audio id="myAudio" loop>
+        <source src="./music/minig.mp3">
+    </audio>
+    <button onclick="playAudio()">Play</button>
+   
+
+    <div id="score">Score : 0</div>
+    <button id="start">Start</button>
+    
+
+    <div>
+        <div id="object1"><img id="thing1" class="objectimg" src="./imgs/b.png" alt=""></div>
+        <div id="object2"><img id="thing2" class="objectimg" src="./imgs/rock.png" alt=""></div>
+        <div id="object3"><img id="thing3" class="objectimg" src="./imgs/s.png" alt=""></div>
+        <div id="object4"><img id="thing4" class="objectimg" src="./imgs/t.png" alt=""></div>
+    </div>
+
+    <div id="mycharacter"><img id="mycharimg" class="chrimage" src="./imgs/vibal.png" alt=""></div>
+    <div id="road"></div>
+    <div id="game-container">
+        <h1>Game Over</h1>
+        <p>Final Score: <span id="final-score"></span></p>
+        <p>High Score: <span id="high-score"></span></p>
+      </div>
+</body>
+    <script>
+        
+        
+       function playAudio() {
+            var audio = document.getElementById('myAudio');
+            audio.play();
+        }  
+    document.getElementById("start").addEventListener("click", function () {
+
+        document.getElementById("start").style.display = 'none'
+        document.getElementById("road").style.animation = 'roadanimation 20s linear infinite'
+                
+        setInterval(() => {
+            num = Math.floor(Math.random() * (350 - 230 + 1) + 230)
+            document.getElementById("object1").style.left = `${num}px`
+
+        }, 3000)
+        setInterval(() => {
+            num = Math.floor(Math.random() * (150 - 50 + 1) + 50)
+            document.getElementById("object2").style.left = `${num}px`
+
+        }, 6000)
+        setInterval(() => {
+            num = Math.floor(Math.random() * (-50 + 140 + 1) - 140)
+            document.getElementById("object3").style.left = `${num}px`
+
+        }, 5000)
+        setInterval(() => {
+            num = Math.floor(Math.random() * (-220 + 330 + 1) - 330)
+            document.getElementById("object4").style.left = `${num}px`
+
+        }, 4000)
+        document.getElementById("object1").style.animation = 'objs1 3s linear infinite'
+        document.getElementById("object2").style.animation = 'objs2 6s linear infinite'
+        document.getElementById("object3").style.animation = 'objs3 5s linear infinite'
+        document.getElementById("object4").style.animation = 'objs4 4s linear infinite'
+        let t = 15;
+        let l = 0;
+        let isMoving = false;
+
+window.addEventListener("keydown", function (x) {
+  if (isMoving) return;
+  isMoving = true;
+
+  if (x.keyCode == 38) {//w
+    t -= 3;
+  }
+  if (x.keyCode == 37) {//a 65
+    l -= 1;
+  }
+  if (x.keyCode == 40) {
+    t += 3;
+  }
+  if (x.keyCode == 39) {
+    l += 1;
+  }
+
+  moveCharacter();
+});
+
+function moveCharacter() {
+  document.getElementById("mycharacter").style.top = `${t}vh`;
+  document.getElementById("mycharacter").style.left = `${l}vw`;
+  
+  // Use requestAnimationFrame for smoother animation
+  requestAnimationFrame(() => {
+    isMoving = false;
+  });
+}
+    })
+    let isGameStarted = false;
+    let highScore = localStorage.getItem("highScore") || 0;
+
+    document.getElementById("start").addEventListener("click", function () {
+    
+    isGameStarted = true;
+   });
+   document.getElementById("score").innerText = `Score: 0 High Score: ${highScore}`;
+   let n = 0;
+      setInterval(() => {
+        if (isGameStarted) {
+          document.getElementById("score").innerText = `Score: ${n} High Score: ${highScore}`;
+          if (n > highScore) {
+            highScore = n;
+            localStorage.setItem("highScore", highScore);
+          }
+          n = n + 1;
+        }
+            
+
+
+            var objs1_left = Math.abs(document.getElementById("thing1").getBoundingClientRect().left);
+            var objs1_right = Math.abs(document.getElementById("thing1").getBoundingClientRect().right);
+            var objs1_top = Math.abs(document.getElementById("thing1").getBoundingClientRect().top);
+            var objs1_bottom = Math.abs(document.getElementById("thing1").getBoundingClientRect().bottom);
+
+            var objs2_left = Math.abs(document.getElementById("thing2").getBoundingClientRect().left);
+            var objs2_right = Math.abs(document.getElementById("thing2").getBoundingClientRect().right);
+            var objs2_top = Math.abs(document.getElementById("thing2").getBoundingClientRect().top);
+            var objs2_bottom = Math.abs(document.getElementById("thing2").getBoundingClientRect().bottom);
+
+            var objs3_left = Math.abs(document.getElementById("thing3").getBoundingClientRect().left);
+            var objs3_right = Math.abs(document.getElementById("thing3").getBoundingClientRect().right);
+            var objs3_top = Math.abs(document.getElementById("thing3").getBoundingClientRect().top);
+            var objs3_bottom = Math.abs(document.getElementById("thing3").getBoundingClientRect().bottom);
+
+            var objs4_left = Math.abs(document.getElementById("thing4").getBoundingClientRect().left);
+            var objs4_right = Math.abs(document.getElementById("thing4").getBoundingClientRect().right);
+            var objs4_top = Math.abs(document.getElementById("thing4").getBoundingClientRect().top);
+            var objs4_bottom = Math.abs(document.getElementById("thing4").getBoundingClientRect().bottom);
+
+            var mycharacter_left = Math.abs(document.getElementById("mycharimg").getBoundingClientRect().left);
+            var mycharacter_right = Math.abs(document.getElementById("mycharimg").getBoundingClientRect().right);
+            var mycharacter_top = Math.abs(document.getElementById("mycharimg").getBoundingClientRect().top);
+            var mycharacter_bottom = Math.abs(document.getElementById("mycharimg").getBoundingClientRect().bottom);
+            
+
+            
+            if (mycharacter_left < 300 || mycharacter_right > 1080 || mycharacter_top < 20 || mycharacter_bottom > 690) {
+                setTimeout(() => {
+                    alert(`GAME OVER!`)
+                })
+                location.reload()
+
+            }
+            if (((objs1_left < mycharacter_left && mycharacter_left < objs1_right) || (objs1_left < mycharacter_right && mycharacter_right < objs1_right)) && ((objs1_top < mycharacter_top && mycharacter_top < objs1_bottom) || (objs1_top < mycharacter_bottom && mycharacter_bottom < objs_bottom))) {
+
+                setTimeout(() => {
+                    alert(`GAME OVER!`)
+                })
+                location.reload()
+
+            }
+            if (((objs2_left < mycharacter_left && mycharacter_left < objs2_right) || (objs2_left < mycharacter_right && mycharacter_right < objs2_right)) && ((objs2_top < mycharacter_top && mycharacter_top < objs2_bottom) || (objs2_top < mycharacter_bottom && mycharacter_bottom < objs2_bottom))) {
+
+                setTimeout(() => {
+                    alert(`GAME OVER!`)
+                })
+                location.reload()
+
+            }
+            if (((objs3_left < mycharacter_left && mycharacter_left < objs3_right) || (objs3_left < mycharacter_right && objs_right < objs3_right)) && ((objs3_top < mycharacter_top && mycharacter_top < objs3_bottom) || (objs3_top < mycharacter_bottom && mycharacter_bottom < objs3_bottom))) {
+
+                setTimeout(() => {
+                    alert(`GAME OVER!`)
+                })
+                location.reload()
+
+            }
+            if (((objs4_left < mycharacter_left && mycharacter_left < objs4_right) || (objs4_left < mycharacter_right && mycharacter_right < objs4_right)) && ((objs4_top < mycharacter_top && mycharacter_top < objs4_bottom) || (objs4_top < mycharcter_bottom && mycharacter_bottom < objs4_bottom))) {
+
+                setTimeout(() => {
+                    alert(`GAME OVER!`)
+                })
+                location.reload()
+
+            }
+
+
+
+        }, 100)
+
+    </script>
+
+</html>
+
